@@ -1,0 +1,8 @@
+from subprocess import getoutput as gout
+
+com = "python3 -m pip "
+freeze = gout(f"{com}freeze")
+pkgs = []
+for pkg in freeze.split("\n"):
+    print(f"### Updating: {pkg.split('==')[0]}")
+    print(gout(f"{com}install -U {pkg.split('==')[0]}"))
